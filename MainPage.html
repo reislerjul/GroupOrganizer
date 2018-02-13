@@ -59,6 +59,21 @@
     max-height: 60px;
     box-shadow: 0px 2px 10px 1px rgba(0,0,0,0.5);
   }
+
+  .popup-bubble-selected {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -100%);
+    /* Style the info window. */
+    background-color: #e3f6ff;
+    padding: 5px;
+    border-radius: 5px;
+    font-family: sans-serif;
+    overflow-y: auto;
+    max-height: 60px;
+    box-shadow: 0px 2px 10px 1px rgba(0,0,0,0.5);
+  }
 </style>
 </head>
 <body>
@@ -83,6 +98,15 @@
   <div id="home_popup">
     Home!
   </div>
+
+  <div id="group1_meeting">
+    Group 1 Meeting
+  </div>
+
+  <div id="group2_meeting">
+    Group 2 Meeting
+  </div>
+
   <div id="map"></div>
   <script>
 
@@ -93,8 +117,8 @@ function initMap() {
   definePopupClass();
 
   map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: 34.13766, lng: -118.12527},
-    zoom: 15,
+    center: {lat: 34.145644, lng: -118.123118},
+    zoom: 14,
   });
 
   popup = new Popup(
@@ -103,9 +127,20 @@ function initMap() {
   popup.setMap(map);
 
   popup2 = new Popup(
-      new google.maps.LatLng(34.141849, -118.124066),
+      new google.maps.LatLng(34.149462, -118.106784),
       document.getElementById('home_popup'));
   popup2.setMap(map);
+
+
+  popup3 = new Popup(
+      new google.maps.LatLng(34.149627, -118.113048),
+      document.getElementById('group1_meeting'));
+  popup3.setMap(map);
+
+  popup4 = new Popup(
+      new google.maps.LatLng(34.145784, -118.101354),
+      document.getElementById('group2_meeting'));
+  popup4.setMap(map);
 
 }
 
@@ -198,12 +233,12 @@ function definePopupClass() {
           </h4>
         </div>
         <div id="collapse1" class="panel-collapse collapse">
-          <ul class="list-group">
+          <ul id="group1_list" class="list-group">
             <li class="list-group-item">Serena Williams</li>
             <li class="list-group-item">Venus Williams</li>
             <li class="list-group-item">Caroline Wozniacki</li>
           </ul>
-          <button class="panel-footer">Join Group</button>
+          <button id="group1_button" class="panel-footer">Join Group</button>
         </div>
       </div>
     </div>
@@ -215,12 +250,12 @@ function definePopupClass() {
           </h4>
         </div>
         <div id="collapse2" class="panel-collapse collapse">
-          <ul class="list-group">
+          <ul id="group2_list" class="list-group">
             <li class="list-group-item">Roger Federer</li>
             <li class="list-group-item">Rafael Nadal</li>
             <li class="list-group-item">Andy Murray</li>
           </ul>
-          <button class="panel-footer">Join Group</button>
+          <button id="group2_button" class="panel-footer">Join Group</button>
         </div>
       </div>
     </div>
@@ -228,5 +263,6 @@ function definePopupClass() {
 
   </div>
 
+<script src="callback.js" type="text/javascript"></script>
 </body>
 </html>
